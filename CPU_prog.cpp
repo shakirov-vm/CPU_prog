@@ -1,8 +1,6 @@
 ﻿#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
-#include <errno.h>
 
 struct CPU
 {
@@ -68,19 +66,57 @@ int Compare(char* argument_first, char* argument_second, struct CPU* cpu, int** 
 
 	scanf("%s %s", argument_first, argument_second);
 
-	if (*(argument_first + 1) == 'a') *record = &(cpu->eax);
-	if (*(argument_first + 1) == 'b') *record = &(cpu->ebx);
-	if (*(argument_first + 1) == 'c') *record = &(cpu->ecx);
-	if (*(argument_first + 1) == 'd') *record = &(cpu->edx);
+	switch (*(argument_first + 1))
+	{
+		case 'a':
+		{
+			*record = &(cpu->eax);
+			break;
+		}
+		case 'b':
+		{
+			*record = &(cpu->ebx);
+			break;
+		}
+		case 'c':
+		{
+			*record = &(cpu->ecx);
+			break;
+		}
+		case 'd':
+		{
+			*record = &(cpu->edx);
+			break;
+		}
+	}
 
 	int arg = strtol(argument_second, &ptr, 0);
 
 	if (*ptr == 'e')
 	{
-		if (*(ptr + 1) == 'a') arg = cpu->eax;
-		if (*(ptr + 1) == 'b') arg = cpu->ebx;
-		if (*(ptr + 1) == 'c') arg = cpu->ecx;
-		if (*(ptr + 1) == 'd') arg = cpu->edx;
+		switch (*(ptr + 1))
+		{
+			case 'a':
+			{
+				arg = cpu->eax;
+				break;
+			}
+			case 'b':
+			{
+				arg = cpu->ebx;
+				break;
+			}
+			case 'c':
+			{
+				arg = cpu->ecx;
+				break;
+			}
+			case 'd':
+			{
+				arg = cpu->edx;
+				break;
+			}
+		}
 	}
 
 	return arg;
@@ -107,4 +143,11 @@ int Compare(char* argument_first, char* argument_second, struct CPU* cpu, int** 
 				if (*(ptr + 1) == 'c') arg = cpu.ecx;
 				if (*(ptr + 1) == 'd') arg = cpu.edx;
 			}
+*/
+
+/*
+	if (*(argument_first + 1) == 'a') *record = &(cpu->eax);
+	if (*(argument_first + 1) == 'b') *record = &(cpu->ebx);
+	if (*(argument_first + 1) == 'c') *record = &(cpu->ecx);
+	if (*(argument_first + 1) == 'd') *record = &(cpu->edx);
 */
